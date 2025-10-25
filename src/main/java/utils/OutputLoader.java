@@ -7,7 +7,6 @@ import java.nio.file.Paths;
 
 public class OutputLoader {
     public static JSONObject loadResult(int graphId) throws Exception {
-
         String content = new String(Files.readAllBytes(Paths.get("src/main/resources/ass_3_output.json")));
         JSONObject jsonObject = new JSONObject(content);
         JSONArray results = jsonObject.getJSONArray("results");
@@ -21,4 +20,3 @@ public class OutputLoader {
         throw new Exception("Result for graph ID " + graphId + " not found.");
     }
 }
-

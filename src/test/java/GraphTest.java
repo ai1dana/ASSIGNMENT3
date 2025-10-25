@@ -1,15 +1,15 @@
 
-
-import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.Test;
 import algorithms.KruskalMST;
 import algorithms.PrimMST;
 import algorithms.EdgeWeightedGraph;
 import utils.GraphLoader;
 import utils.OutputLoader;
+import org.junit.jupiter.api.Test;
 import org.json.JSONObject;
 
-public class AlgorithmTest {
+import static org.junit.jupiter.api.Assertions.*;
+
+public class GraphTest {
 
     @Test
     public void testGraph1() throws Exception {
@@ -32,6 +32,7 @@ public class AlgorithmTest {
         assertEquals(expectedResult.getJSONObject("prim").getInt("operations_count"), prim.getOperationCount(), "Prim's operation count mismatch");
     }
 
-    // Добавьте другие тесты для проверки различных графов (ID 6, ID 16)
+    // Добавьте другие тесты для проверки различных графов
 }
+
 
