@@ -3,49 +3,38 @@ package algorithms;
 import java.util.*;
 
 public class PrimMST {
-    private List<Edge> mst;            // Список рёбер для MST
-    private double totalWeight;        // Общий вес MST
+    private List<Edge> mst;
+    private double totalWeight;
+    private long comparisonCount = 0;
+    private long extractionCount = 0;
 
     public PrimMST(List<Edge> edges, int numVertices) {
         mst = new ArrayList<>();
         totalWeight = 0;
 
-        // Создание графа с использованием списка рёбер
         Map<Integer, List<Edge>> graph = buildGraph(edges, numVertices);
-
-        // Приоритетная очередь для хранения рёбер с минимальным весом
         PriorityQueue<Edge> pq = new PriorityQueue<>();
-        boolean[] inMST = new boolean[numVertices]; // Массив для отслеживания посещённых вершин
-
-        // Начинаем с первой вершины (0)
+        boolean[] inMST = new boolean[numVertices];
         inMST[0] = true;
-
-        // Добавляем рёбра, исходящие из вершины 0
         pq.addAll(graph.get(0));
 
-        // Алгоритм Прима
         while (!pq.isEmpty()) {
-            Edge edge = pq.poll(); // Извлекаем ребро с минимальным весом
+            extractionCount++;
+            Edge edge = pq.poll();
+            comparisonCount++;
 
-            int vertex = edge.getVertex1();  // Вершина, к которой подключаем
-            int otherVertex = edge.getVertex2(); // Вершина, с которой мы соединяемся
-
-            // Если вершина не в MST, добавляем её
+            int vertex = edge.getVertex1();
+            int otherVertex = edge.getVertex2();
             if (inMST[otherVertex]) {
-                continue;  // Если вершина уже в MST, пропускаем
+                continue;
             }
-
-            // Добавляем ребро в MST
             mst.add(edge);
             totalWeight += edge.getWeight();
             inMST[otherVertex] = true;
-
-            // Добавляем все рёбра, исходящие от новой вершины, в очередь
             pq.addAll(graph.get(otherVertex));
         }
     }
 
-    // Построение графа из рёбер
     private Map<Integer, List<Edge>> buildGraph(List<Edge> edges, int numVertices) {
         Map<Integer, List<Edge>> graph = new HashMap<>();
         for (int i = 0; i < numVertices; i++) {
@@ -66,5 +55,10 @@ public class PrimMST {
 
     public double getTotalWeight() {
         return totalWeight;
+    }
+
+    // Метод для получения количества операций
+    public long getOperationCount() {
+        return comparisonCount + extractionCount;
     }
 }

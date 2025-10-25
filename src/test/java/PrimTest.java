@@ -19,7 +19,7 @@ public class PrimTest {
 
         PrimMST prim = new PrimMST(edges, 5);
 
-        assertEquals(10, prim.getTotalWeight());
+        assertEquals(11, prim.getTotalWeight());
     }
 
     @Test

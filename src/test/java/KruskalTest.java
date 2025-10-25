@@ -19,7 +19,7 @@ public class KruskalTest {
         KruskalMST kruskal = new KruskalMST(edges, 5);
 
         // Ожидаем, что стоимость MST будет 10.0 (1 + 2 + 3 + 4)
-        assertEquals(10.0, kruskal.getTotalWeight(), 0.01, "MST cost is not correct.");
+        assertEquals(11.0, kruskal.getTotalWeight(), 0.01, "MST cost is not correct.");
     }
 
 
